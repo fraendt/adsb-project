@@ -23,7 +23,7 @@ public class bodymove : MonoBehaviour
         {
             //transform.position = transform.position + move;
 			//transform.Translate(move, Space.World);
-			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15F);
+			
 			//camera forward and right vectors:
 			var camera = Camera.main;
 			
@@ -41,6 +41,7 @@ public class bodymove : MonoBehaviour
 	 
 			//now we can apply the movement:
 			transform.Translate(desiredMoveDirection * playerspeed * Time.deltaTime);
+			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15F);
 			
         }
 		
