@@ -5,14 +5,15 @@ using UnityEngine;
 public class bodymove : MonoBehaviour
 {
 
-	public float jumpHeight = 500.0f;
+	public float jumpHeight = 0.00000000010f;
 	public float playerspeed = 10.0f;
 	public Rigidbody body;
 	
+	private bool grounded = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -38,14 +39,33 @@ public class bodymove : MonoBehaviour
 	 
 			//this is the direction in the world space we want to move:
 			var desiredMoveDirection = forward * Input.GetAxis("Vertical") + right * Input.GetAxis("Horizontal");
-	 
+			desiredMoveDirection = desiredMoveDirection * playerspeed;
+			
+			var jump = Input.GetAxis("Jump");
+			if (grounded && jump != 0)
+			{
+				
+				desiredMoveDirection = desiredMoveDirection + new Vector3(0, jump * jumpHeight,0);
+				Debug.Log(Input.GetAxis("Jump") * jumpHeight);
+				grounded = false;
+			}
+			
 			//now we can apply the movement:
-			transform.Translate(desiredMoveDirection * playerspeed * Time.deltaTime);
+			transform.Translate(desiredMoveDirection * Time.deltaTime);
 			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15F);
 			
         }
 		
     }
+	
+	void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log("Entered");
+		if (collision.gameObject.CompareTag("Ground"))
+		{
+			grounded = true;
+		}
+	}
 
 		 
 }
