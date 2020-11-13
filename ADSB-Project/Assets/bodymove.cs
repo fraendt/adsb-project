@@ -5,52 +5,51 @@ using UnityEngine;
 public class bodymove : MonoBehaviour
 {
 
-	public float jumpHeight = 0.00000000010f;
+	public float jumpHeight = 10.0f;
 	public float playerspeed = 10.0f;
 	public Rigidbody body;
+	//public float custom_gravity = 12.0f;
 	
 	private bool grounded = true;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+		//Physics.gravity.x = custom_gravity;
+		//body.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
 
     // Update is called once per frame
     void Update()
     {
+		//body.addForce(new Vector3(0,-15,0));
         Vector3 move = new Vector3(playerspeed*Input.GetAxis("Horizontal")*Time.deltaTime, Input.GetAxis("Jump"), playerspeed*Input.GetAxis("Vertical")*Time.deltaTime);
 		if (move != Vector3.zero)
         {
-            //transform.position = transform.position + move;
-			//transform.Translate(move, Space.World);
-			
-			//camera forward and right vectors:
 			var camera = Camera.main;
 			
 			var forward = camera.transform.forward;
 			var right = camera.transform.right;
 	 
-			//project forward and right vectors on the horizontal plane (y = 0)
 			forward.y = 0f;
 			right.y = 0f;
 			forward.Normalize();
 			right.Normalize();
 	 
-			//this is the direction in the world space we want to move:
 			var desiredMoveDirection = forward * Input.GetAxis("Vertical") + right * Input.GetAxis("Horizontal");
 			desiredMoveDirection = desiredMoveDirection * playerspeed;
 			
-			var jump = Input.GetAxis("Jump");
-			if (grounded && jump != 0)
+			var jump_key = Input.GetAxis("Jump");
+			if (grounded && jump_key != 0)
 			{
 				
-				desiredMoveDirection = desiredMoveDirection + new Vector3(0, jump * jumpHeight,0);
-				Debug.Log(Input.GetAxis("Jump") * jumpHeight);
+				// desiredMoveDirection = desiredMoveDirection + new Vector3(0, jump * jumpHeight,0);
+				//Vector3 jump = new Vector3(0,(transform.up * jumpHeight) / Time.fixedDeltaTime,0);
+				//body.AddForce(jump);
+				body.velocity += new Vector3(0,10,0);
 				grounded = false;
 			}
 			
-			//now we can apply the movement:
 			transform.Translate(desiredMoveDirection * Time.deltaTime);
 			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15F);
 			
