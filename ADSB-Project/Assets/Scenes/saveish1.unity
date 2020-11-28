@@ -144,8 +144,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4653201}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.788973, y: -10.044949, z: 22.948624}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.788971, y: -10.044949, z: 22.948608}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1588776665}
@@ -349,12 +349,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 449848583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe53567ec45cd654da736e3e24b0bcaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 81c9795a96c094f4cbde4d65546aa9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 1000
-  playerspeed: 10
-  body: {fileID: 449848584}
 --- !u!1 &886693843
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +551,6 @@ GameObject:
   - component: {fileID: 1588776668}
   - component: {fileID: 1588776667}
   - component: {fileID: 1588776666}
-  - component: {fileID: 1588776669}
   m_Layer: 0
   m_Name: head
   m_TagString: Untagged
@@ -637,22 +633,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588776664}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1588776669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588776664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6aa80a8bb76f964c87cfc1d919e886f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedH: 2
-  speedV: 2
-  player: {fileID: 449848588}
-  sensitivity: 2
 --- !u!1001 &1787636296
 PrefabInstance:
   m_ObjectHideFlags: 0
